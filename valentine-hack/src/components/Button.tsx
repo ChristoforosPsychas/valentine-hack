@@ -1,11 +1,12 @@
 type ButtonProps = {
   answer: string;
-  onAnswer: () => void;
+  onClick?: () => void;
+  onMouseEnter?: () => void;
 };
 
-const Button = ({ answer, onAnswer }: ButtonProps) => {
+const Button = ({ answer, onClick, onMouseEnter }: ButtonProps) => {
   return (
-    <button onClick={() => onAnswer()}>
+    <button onClick={onClick} onMouseEnter={onMouseEnter}>
       <span>{answer}</span>
     </button>
   );
