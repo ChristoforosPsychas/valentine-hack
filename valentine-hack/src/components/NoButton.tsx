@@ -7,6 +7,7 @@ const NoButton = ({ onHover }: NoButtonProps) => {
     x: number;
     y: number;
   } | null>(null);
+  const [isFixed, setIsFixed] = useState(false);
 
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -18,7 +19,27 @@ const NoButton = ({ onHover }: NoButtonProps) => {
   }, [initialPosition]);
 
   const handleMouseEnter = () => {
-    if (buttonRef.current && initialPosition) {
+    if (buttonRef.current) {
+      if (!isFixed) {
+        const rect = buttonRef.current.getBoundingClientRect();
+        setInitialPosition({ x: rect.left, y: rect.top });
+        setIsFixed(true);
+      }
+      if (initialPosition) {
+        const width = buttonRef.current.offsetWidth;
+        const height = buttonRef.current.offsetHeight;
+
+        const randomX = Math.random() * (window.innerWidth - width);
+        const randomY = Math.random() * (window.innerHeight - height);
+
+        setPosition({
+          x: randomX - initialPosition.x,
+          y: randomY - initialPosition.y,
+        });
+      }
+      onHover();
+    }
+    /* if (buttonRef.current && initialPosition) {
       const width = buttonRef.current.offsetWidth;
       const height = buttonRef.current.offsetHeight;
 
@@ -31,17 +52,25 @@ const NoButton = ({ onHover }: NoButtonProps) => {
         y: randomY - initialPosition.y,
       });
       onHover();
-    }
+    } */
   };
 
   return (
     <button
       ref={buttonRef}
       onMouseEnter={handleMouseEnter}
-      style={{
+      className="rounded-xl bg-gray-300 text-fuchsia-900 px-6 py-3 font-semibold hover:bg-gray-100 transition-colors cursor-pointer"
+      /* style={{
         position: "fixed",
         transform: `translate(${position.x}px, ${position.y}px)`,
         transition: "transform 0.5s ease",
+      }} */
+      style={{
+        position: isFixed ? "fixed" : "static",
+        ...(isFixed && {
+          transform: `translate(${position.x}px, ${position.y}px)`,
+          transition: "transform 0.5s ease",
+        }),
       }}
     >
       <span>No</span>
