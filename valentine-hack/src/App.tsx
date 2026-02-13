@@ -1,15 +1,16 @@
 import { useState } from "react";
 import "./App.css";
 import Button from "./components/Button";
+import YesComponent from "./components/YesComponent";
 
 function App() {
-  const [answer, setAnswer] = useState<string | null>(null);
+  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
 
   const handleYes = () => {
-    setAnswer("yes");
+    setSelectedAnswer("yes");
   };
   const handleNo = () => {
-    setAnswer("no");
+    setSelectedAnswer("no");
   };
 
   return (
@@ -20,7 +21,7 @@ function App() {
         <Button answer="No" onAnswer={handleNo} />
       </div>
       <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+        {selectedAnswer === "yes" && <YesComponent />}
       </p>
     </>
   );
