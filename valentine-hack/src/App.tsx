@@ -18,29 +18,33 @@ function App() {
 
   const getMessage = (count: number) => {
     if (count >= 15) return "You are mean.";
-    if (count >= 10) return "A worthy effort, but...futile!";
-    if (count >= 5) return "Perhaps try the 'Yes' button instead? Come on.";
+    if (count >= 10) return "Perhaps try the 'Yes' button instead? Come on.";
+    if (count >= 5) return "A worthy effort, but...futile!";
     return null;
   };
 
   const message = getMessage(count);
 
   return (
-    <>
-      <h1>Will you be my valentine?</h1>
-      <div className="card">
-        {selectedAnswer !== "yes" && (
-          <div>
-            <Button answer="Yes" onClick={handleYes} />
-            <NoButton onHover={handleCount} />
-          </div>
+    <div className="flex flex-col items-center justify-center min-h-screen gap-8 bg-fuchsia-900">
+      <div className="text-gray-300 text-6xl font-bold text-center drop-shadow-lg">
+        💗 Will you be my valentine? 💗
+      </div>
+
+      {selectedAnswer !== "yes" && (
+        <div className="flex gap-4">
+          <Button answer="Yes" onClick={handleYes} />
+          <NoButton onHover={handleCount} />
+        </div>
+      )}
+
+      <div className="min-h-[60px]">
+        {selectedAnswer === "yes" && <YesComponent />}
+        {!selectedAnswer && (
+          <p className="text-gray-300 text-xl italic">{message}</p>
         )}
       </div>
-      <p className="read-the-docs">
-        {selectedAnswer === "yes" && <YesComponent />}
-        {!selectedAnswer && <p>{message}</p>}
-      </p>
-    </>
+    </div>
   );
 }
 
