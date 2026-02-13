@@ -16,6 +16,15 @@ function App() {
     setCount((prev) => prev + 1);
   };
 
+  const getMessage = (count: number) => {
+    if (count >= 15) return "You are mean.";
+    if (count >= 10) return "A worthy effort, but...futile!";
+    if (count >= 5) return "Perhaps try the 'Yes' button instead? Come on.";
+    return null;
+  };
+
+  const message = getMessage(count);
+
   return (
     <>
       <h1>Will you be my valentine?</h1>
@@ -29,9 +38,7 @@ function App() {
       </div>
       <p className="read-the-docs">
         {selectedAnswer === "yes" && <YesComponent />}
-        {count >= 5 && !selectedAnswer && (
-          <p>A worthy effort to catch me, but...futile!</p>
-        )}
+        {!selectedAnswer && <p>{message}</p>}
       </p>
     </>
   );
