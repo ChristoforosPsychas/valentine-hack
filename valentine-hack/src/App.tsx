@@ -17,7 +17,7 @@ function App() {
   };
 
   const getMessage = (count: number) => {
-    if (count >= 15) return "You are mean.";
+    if (count >= 15) return "You are mean, little bug.";
     if (count >= 10) return "Perhaps try the 'Yes' button instead? Come on.";
     if (count >= 5) return "A worthy effort, but...futile!";
     return null;
