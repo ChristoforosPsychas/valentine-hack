@@ -1,11 +1,13 @@
 import { useState, useRef, useEffect } from "react";
+type NoButtonProps = { onHover: () => void };
 
-const NoButton = () => {
+const NoButton = ({ onHover }: NoButtonProps) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [initialPosition, setInitialPosition] = useState<{
     x: number;
     y: number;
   } | null>(null);
+
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -28,6 +30,7 @@ const NoButton = () => {
         x: randomX - initialPosition.x,
         y: randomY - initialPosition.y,
       });
+      onHover();
     }
   };
 
