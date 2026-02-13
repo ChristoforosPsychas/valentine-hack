@@ -4,7 +4,7 @@ const YesComponent = () => {
   const { width, height } = useWindowSize();
 
   return (
-    <div>
+    <div className="flex flex-col items-center gap-4">
       <iframe
         style={{ border: "none" }}
         width="560"
@@ -18,11 +18,11 @@ const YesComponent = () => {
       <Confetti
         width={width}
         height={height}
-        numberOfPieces={350}
+        numberOfPieces={450}
         recycle={false}
         gravity={0.04}
       />
-      <p>Good girl.</p>
+      <p className="text-gray-300 text-xl italic">Good girl.</p>
     </div>
   );
 };
