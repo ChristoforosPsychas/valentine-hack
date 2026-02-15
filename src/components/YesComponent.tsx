@@ -23,7 +23,7 @@ const YesComponent = () => {
         gravity={0.04}
       />
       <p className="text-gray-300 text-xl italic">
-        (In Emperor Palpatine's voice: Goooood. Gooooooood.)
+        (In Emperor Palpatine's voice): Goooood. Gooooooood.
       </p>
     </div>
   );
